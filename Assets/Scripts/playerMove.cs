@@ -16,6 +16,8 @@ public float lowJumpMultiplier = 1f;
     //arrastra el sprite renderer en el campo nuevo en la vista
     public SpriteRenderer spriteRenderer;
 
+    public Animator animator;
+
     void Start()
     {
         //generando conexión sin la vista
@@ -29,15 +31,22 @@ public float lowJumpMultiplier = 1f;
             rb2D.velocity = new Vector2(runSpeed, rb2D.velocity.y);
             //gira a la derecha
             spriteRenderer.flipX = false;
+            //animación correr
+            animator.SetBool("Run", true);
         }
         else if(Input.GetKey("a") || Input.GetKey("left")) {
             //camina a la izquierda
             rb2D.velocity = new Vector2(-runSpeed, rb2D.velocity.y);
             //gira a la izquierda
             spriteRenderer.flipX = true;
+            //animación correr
+
+            animator.SetBool("Run", true);
         }
         else{
             rb2D.velocity = new Vector2(0, rb2D.velocity.y);
+            //sin animación correr
+            animator.SetBool("Run", false);
         }
 
         if(Input.GetKeyUp("w") &&  checkGround.isGrounded) {
