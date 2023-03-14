@@ -13,18 +13,28 @@ public bool betterJump = false;
 public float fallJumMultiplier = 0.5f;
 public float lowJumpMultiplier = 1f;
 
+    //arrastra el sprite renderer en el campo nuevo en la vista
+    public SpriteRenderer spriteRenderer;
+
     void Start()
     {
+        //generando conexión sin la vista
         rb2D=GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
         if(Input.GetKey("d") || Input.GetKey("right")) {
+            //camina a la derecha
             rb2D.velocity = new Vector2(runSpeed, rb2D.velocity.y);
+            //gira a la derecha
+            spriteRenderer.flipX = false;
         }
         else if(Input.GetKey("a") || Input.GetKey("left")) {
+            //camina a la izquierda
             rb2D.velocity = new Vector2(-runSpeed, rb2D.velocity.y);
+            //gira a la izquierda
+            spriteRenderer.flipX = true;
         }
         else{
             rb2D.velocity = new Vector2(0, rb2D.velocity.y);
