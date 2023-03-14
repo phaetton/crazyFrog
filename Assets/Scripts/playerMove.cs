@@ -8,6 +8,11 @@ public class playerMove : MonoBehaviour
 public float runSpeed=2;
 public float jumpSpeed=3;
 Rigidbody2D rb2D;
+
+public bool betterJump = false;
+public float fallJumMultiplier = 0.5f;
+public float lowJumpMultiplier = 1f;
+
     void Start()
     {
         rb2D=GetComponent<Rigidbody2D>();
@@ -27,6 +32,15 @@ Rigidbody2D rb2D;
 
         if(Input.GetKeyUp("space") &&  checkGround.isGrounded) {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
+        }
+
+        if(betterJump){
+            if(rb2D.velocity.y<0){
+                rb2D.velocity += Vector2.up * Physics2D.gravity.y * (fallJumMultiplier) * Time.deltaTime;
+            }
+            if(rb2D.velocity.y>0 && !Input.GetKey("space")){
+                rb2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier) * Time.deltaTime;
+            }
         }
     }
 }
