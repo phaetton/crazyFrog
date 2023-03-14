@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerMove : MonoBehaviour
 {
+
 public float runSpeed=2;
 public float jumpSpeed=3;
 Rigidbody2D rb2D;
@@ -15,13 +16,17 @@ Rigidbody2D rb2D;
     void FixedUpdate()
     {
         if(Input.GetKey("d") || Input.GetKey("right")) {
-            rb2D.velocity= new Vector2(runSpeed, rb2D.velocity.y);
+            rb2D.velocity = new Vector2(runSpeed, rb2D.velocity.y);
         }
         else if(Input.GetKey("a") || Input.GetKey("left")) {
-            rb2D.velocity= new Vector2(-runSpeed, rb2D.velocity.y);
+            rb2D.velocity = new Vector2(-runSpeed, rb2D.velocity.y);
         }
         else{
-            rb2D.velocity=new Vector2(0, rb2D.velocity.y);
+            rb2D.velocity = new Vector2(0, rb2D.velocity.y);
+        }
+
+        if(Input.GetKeyUp("space") &&  checkGround.isGrounded) {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
         }
     }
 }
