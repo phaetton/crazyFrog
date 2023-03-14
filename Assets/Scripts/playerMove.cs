@@ -30,7 +30,7 @@ public float lowJumpMultiplier = 1f;
             rb2D.velocity = new Vector2(0, rb2D.velocity.y);
         }
 
-        if(Input.GetKeyUp("space") &&  checkGround.isGrounded) {
+        if(Input.GetKeyUp("w") &&  checkGround.isGrounded) {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
         }
 
